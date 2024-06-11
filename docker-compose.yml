@@ -1,0 +1,119 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: password
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mydb:/var/lib/mysql
+      - ./docker/mysql/conf:/etc/mysql/conf.d
+      - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "23306:3306"
+  apache:
+    build: docker/apache/.
+    volumes:
+      - ./src:/var/www/html
+      - type: bind
+        source: ./docker/apache/httpd.conf
+        target: /usr/local/apache2/conf/httpd.conf
+      - type: bind
+        source: ./docker/apache/httpd-vhosts.conf
+        target: /usr/local/apache2/conf/extra/httpd-vhosts.conf
+      - type: bind
+        source: ./docker/apache/httpd-ssl.conf
+        target: /usr/local/apache2/conf/extra/httpd-ssl.conf
+      - type: bind
+        source: ./docker/apache/server.crt
+        target: /usr/local/apache2/conf/server.crt
+      - type: bind
+        source: ./docker/apache/server.csr
+        target: /usr/local/apache2/conf/server.csr
+      - type: bind
+        source: ./docker/apache/server.key
+        target: /usr/local/apache2/conf/server.key
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - app
+  apache-minio:
+    build: docker/apache/.
+    volumes:
+      - ./src:/var/www/html
+      - type: bind
+        source: ./docker/apache/httpd.conf
+        target: /usr/local/apache2/conf/httpd.conf
+      - type: bind
+        source: ./docker/apache/httpd-vhosts-minio.conf
+        target: /usr/local/apache2/conf/extra/httpd-vhosts.conf
+      - type: bind
+        source: ./docker/apache/httpd-ssl-minio.conf
+        target: /usr/local/apache2/conf/extra/httpd-ssl.conf
+      - type: bind
+        source: ./docker/apache/server.crt
+        target: /usr/local/apache2/conf/server.crt
+      - type: bind
+        source: ./docker/apache/server.csr
+        target: /usr/local/apache2/conf/server.csr
+      - type: bind
+        source: ./docker/apache/server.key
+        target: /usr/local/apache2/conf/server.key
+    ports:
+      - "20000:80"
+      - "20001:443"
+    links:
+      - minio
+  app:
+    build: docker/php-fpm/.
+    volumes:
+      - ./src:/var/www/html
+      - type: bind
+        source: ./docker/php-fpm/php.ini
+        target: /usr/local/etc/php/php-ini
+      - type: bind
+        source: ./docker/php-fpm/www.conf
+        target: /usr/local/etc/php-fpm.d/www.conf
+    links:
+      - mysql
+    environment:
+      DB_HOST: mysql
+  minio:
+    image: minio/minio:latest
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=password
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=password
+    ports:
+      - 20010:20010
+      - 20011:20011
+    entrypoint: bash
+    command: -c "/bin/minio server --address :20010 --console-address :20011 /data"
+    volumes:
+      - s3:/data
+  create_bucket:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set myminio http://minio:20010 minio password;
+
+      mc mb myminio/main;
+      mc anonymous set public myminio/main;
+      "
+  mail:
+    image: axllent/mailpit:latest
+    ports:
+      - 28025:8025
+      - 21025:1025
+volumes:
+  mydb:
+    driver: local
+  s3:
+    driver: local
