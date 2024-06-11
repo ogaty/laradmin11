@@ -7,7 +7,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/> {{-- Encrypted CSRF token for Laravel, in order for Ajax requests to work --}}
 
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/38.png">
 
     <title>{{ config('app.name') }}</title>
 

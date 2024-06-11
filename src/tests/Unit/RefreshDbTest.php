@@ -29,6 +29,7 @@ class RefreshDbTest extends TestCase
         // createだとRefreshDBでidがインクリメントされる
         News::create([
             'title' => 'title',
+            'body' => 'body',
             'news_category_id' => 1,
         ]);
     }
