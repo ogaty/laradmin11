@@ -21,7 +21,8 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        $remember = $request->input('remember');
+        if (Auth::attempt(['email' => $email, 'password' => $password], $remember == 1)) {
             return redirect('/dashboard');
         }
 
