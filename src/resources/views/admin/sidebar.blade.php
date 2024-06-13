@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="pro-sidebar-logo">
                 <div>L</div>
-                <h5>Life Cockpit</h5>
+                <h5>Laradmin</h5>
             </div>
         </div>
         <div class="sidebar-content">

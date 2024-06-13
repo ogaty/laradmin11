@@ -9,7 +9,6 @@ Route::post('/auth/login', [Controllers\AuthController::class, 'postLogin']);
 Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])->name('auth.logout');
 
 Route::middleware('auth:web')->group(function () {
-    Route::get('/', [Controllers\HomeController::class, 'dashboard']);
     Route::get('/dashboard', [Controllers\HomeController::class, 'dashboard']);
     Route::get('/news', [Controllers\NewsController::class, 'index'])->name('news.index');
     Route::get('/news1', [Controllers\NewsController::class, 'index'])->name('news1.index');
@@ -45,3 +44,6 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload');
     Route::get('/file/list', [Controllers\Api\FileController::class, 'list'])->name('api.file.list');
 });
+
+Route::get('/', [Controllers\HomeController::class, 'index']);
+

@@ -48,6 +48,9 @@ class DownloadController extends Controller
         return response()->make($content, 200, $headers);
     }
 
+    /**
+     * 自作
+     */
     public function downloadCsv4()
     {
         $users = User::all();
