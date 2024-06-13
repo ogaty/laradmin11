@@ -24,7 +24,7 @@ class DownloadController extends Controller
      */
     public function downloadCsv()
     {
-        return Storage::download('test.csv', 'test.csv', [['Content-Type' => 'text/csv']]);
+        return Storage::download('public/test.csv', 'test.csv', [['Content-Type' => 'text/csv']]);
     }
 
     /**
@@ -32,7 +32,7 @@ class DownloadController extends Controller
      */
     public function downloadCsv2()
     {
-        return response()->download(storage_path('app/test.csv'));
+        return response()->download(storage_path('app/public/test.csv'));
     }
 
     /**
@@ -40,7 +40,7 @@ class DownloadController extends Controller
      */
     public function downloadCsv3()
     {
-        $content = file_get_contents(storage_path('app/test.csv'));
+        $content = file_get_contents(storage_path('app/public/test.csv'));
         $headers = [
             'Content-Type' => 'text/plain',
             'content-Disposition' => 'attachment; filename="test.csv"',
@@ -78,7 +78,7 @@ class DownloadController extends Controller
      */
     public function downloadZip()
     {
-        return Storage::download('test.zip', 'test.zip', [['Content-Type' => 'application/zip']]);
+        return Storage::download('public/test.zip', 'test.zip', [['Content-Type' => 'application/zip']]);
     }
 
     /**
@@ -86,6 +86,6 @@ class DownloadController extends Controller
      */
     public function downloadPdf()
     {
-        return Storage::download('test.pdf', 'test.pdf', [['Content-Type' => 'application/pdf']]);
+        return Storage::download('public/test.pdf', 'test.pdf', [['Content-Type' => 'application/pdf']]);
     }
 }
