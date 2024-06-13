@@ -28,6 +28,8 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/news-media/add', [Controllers\NewsMediaController::class, 'store']);
     Route::get('/news-media/media/{id}', [Controllers\NewsMediaController::class, 'medias']);
 
+    Route::get('/downloads', [Controllers\DownloadController::class, 'index'])->name('download.index');
+
     Route::get('/users', [Controllers\UserController::class, 'index'])->name('user.index');
     Route::get('/usertokens', [Controllers\UserController::class, 'index'])->name('usertoken.index');
 });

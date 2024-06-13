@@ -342,7 +342,7 @@
 }
 
 .sidebar {
-    color: #7d84ab;
+    color: #b4bdf1;
     position: relative;
     height: 100%;
     max-height: 100%;
@@ -378,18 +378,11 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    background-color: #0c1e35;
+    background-color: #193e6e;
     z-index: 2;
 }
 .sidebar .sidebar-layout::-webkit-scrollbar-thumb {
     border-radius: 4px;
-}
-.sidebar .sidebar-layout:hover::-webkit-scrollbar-thumb {
-    background-color: #1a4173;
-}
-.sidebar .sidebar-layout::-webkit-scrollbar {
-    width: 6px;
-    background-color: #0c1e35;
 }
 .sidebar .sidebar-layout .sidebar-header {
     height: 100px;
@@ -455,7 +448,7 @@
     align-items: center;
     height: 50px;
     padding: 0 20px;
-    color: #7d84ab;
+    color: #b5b7c2;
 }
 .layout .sidebar .menu .menu-item a .menu-icon {
     font-size: 1.2rem;
@@ -533,7 +526,7 @@
     color: #dee2ec;
 }
 .layout .sidebar .menu > ul > .sub-menu > .sub-menu-list {
-    background-color: #0b1a2c;
+    background-color: #25364a;
 }
 .layout .sidebar .menu.icon-shape-circle .menu-item a .menu-icon, .layout .sidebar .menu.icon-shape-rounded .menu-item a .menu-icon, .layout .sidebar .menu.icon-shape-square .menu-item a .menu-icon {
     background-color: #0b1a2c;
@@ -621,7 +614,7 @@
 body {
     margin: 0;
     height: 100vh;
-    font-family: "Poppins", sans-serif;
+    font-family: sans-serif;
     color: #3f4750;
     font-size: 0.9rem;
 }

@@ -74,13 +74,6 @@ const slideToggle = (target, duration = ANIMATION_DURATION) => {
 };
 
 /**
- * sidebar toggle handler (on break point )
- */
-document.getElementById("btn-toggle").addEventListener("click", () => {
-    SIDEBAR_EL.classList.toggle("toggled");
-});
-
-/**
  * toggle sidebar on overlay click
  */
 document.getElementById("overlay").addEventListener("click", () => {
