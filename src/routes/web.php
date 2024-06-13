@@ -30,6 +30,13 @@ Route::middleware('auth:web')->group(function () {
 
     Route::get('/downloads', [Controllers\DownloadController::class, 'index'])->name('download.index');
 
+    Route::get('/downloads/csv', [Controllers\DownloadController::class, 'downloadCsv'])->name('download.csv');
+    Route::get('/downloads/csv2', [Controllers\DownloadController::class, 'downloadCsv2'])->name('download.csv2');
+    Route::get('/downloads/csv3', [Controllers\DownloadController::class, 'downloadCsv3'])->name('download.csv3');
+    Route::get('/downloads/csv4', [Controllers\DownloadController::class, 'downloadCsv4'])->name('download.csv4');
+    Route::get('/downloads/zip', [Controllers\DownloadController::class, 'downloadZip'])->name('download.zip');
+    Route::get('/downloads/pdf', [Controllers\DownloadController::class, 'downloadPdf'])->name('download.pdf');
+
     Route::get('/users', [Controllers\UserController::class, 'index'])->name('user.index');
     Route::get('/usertokens', [Controllers\UserController::class, 'index'])->name('usertoken.index');
 });

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use DateTimeInterface;
 
 /**
  * @method static $this find()
@@ -13,4 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 class BaseModel extends Model
 {
 
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }
