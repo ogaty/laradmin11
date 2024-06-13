@@ -184,7 +184,7 @@ class NewsController extends Controller
     }
 
     /**
-     * common
+     * 保存共通
      * @param Request $request
      * @return void
      */

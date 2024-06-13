@@ -1,5 +1,4 @@
 <aside id="sidebar" class="sidebar break-point-sm">
-    <a id="btn-collapse" class="sidebar-collapser"><i class="ri-arrow-left-s-line"></i></a>
     <div class="sidebar-layout">
         <div class="sidebar-header">
             <div class="pro-sidebar-logo">
@@ -19,18 +18,18 @@
                         ];
                     @endphp
                     @include('/admin/_sidebar_single', ['menu' => $newsMenu])
-                    <li class="menu-item">
-                        <a href="/">
-                            <span class="menu-icon">
-                              <i class="ri-file-line"></i>
-                            </span>
-                            <span class="menu-title">Docs</span>
-                        </a>
-                    </li>
+                    @php
+                        $downloadMenu = [
+                            'link' => route('download.index'),
+                            'title' => 'Download',
+                            'icon' => "ri-download-line"
+                        ];
+                    @endphp
+                    @include('/admin/_sidebar_single', ['menu' => $downloadMenu])
                     @php
                         $newsMenu2 = [
                             'title' => 'News(vaildation)',
-                            'icon' => "ri-vip-diamond-fill",
+                            'icon' => "ri-file-close-line",
                             'sub' => [
                                 [
                                     'link' => route('news1.index'),
@@ -56,7 +55,7 @@
                         ];
                         $newsMenu3 = [
                             'title' => 'News(Editor)',
-                            'icon' => "ri-vip-diamond-fill",
+                            'icon' => "ri-file-line",
                             'sub' => [
                                 [
                                     'link' => route('news4.index'),

@@ -157,7 +157,7 @@
         function insertToEditor(url) {
             // push image url to rich editor.
             const range = quill.getSelection();
-            let x = 'https://minio.ogatism.net:20443/main/';
+            let x = 'https://minio.ogatism.net:20001/main/';
             quill.insertEmbed(range.index, 'image', x + url);
         }
 
@@ -183,7 +183,7 @@
                     const files = response.data.files;
                     for (file of files) {
                         var img = document.createElement("img")
-                        let x = 'https://minio.ogatism.net:20443/main/';
+                        let x = 'https://minio.ogatism.net:20001/main/';
                         img.src = x + file
                         let radio = document.createElement("input")
                         radio.type = "radio"
