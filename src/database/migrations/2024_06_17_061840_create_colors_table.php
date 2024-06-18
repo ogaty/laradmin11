@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news_tags', function (Blueprint $table) {
+        Schema::create('colors', function (Blueprint $table) {
             $table->id();
-            $table->integer('news_id');
-            $table->integer('tags_id');
-            $table->datetimes();
+            $table->string('name');
+            $table->string('code');
+            $table->integer('r');
+            $table->integer('g');
+            $table->integer('b');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news_tags');
+        Schema::dropIfExists('colors');
     }
 };

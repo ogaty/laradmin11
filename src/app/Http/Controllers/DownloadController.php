@@ -16,7 +16,7 @@ class DownloadController extends Controller
 
     public function index()
     {
-        return response()->view($this->blade . '/index');
+        return view($this->blade . '/index');
     }
 
     /**

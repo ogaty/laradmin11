@@ -25,6 +25,20 @@ class NewsController extends Controller
     public function index()
     {
         $message = Session::get("message");
+        $news = News::all();
+        return view($this->blade . '/index', [
+            "title" => "news validate pattern1", "url" => "/news1",
+            "news" => $news,
+            "open" => "news",
+            "message" => $message
+        ]);
+    }
+
+    /**
+     */
+    public function index1()
+    {
+        $message = Session::get("message");
         return view($this->blade . '/news', [
             "title" => "news validate pattern1", "url" => "/news1",
             "open" => "news",

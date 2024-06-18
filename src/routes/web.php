@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers as Controllers;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/auth/login', [Controllers\AuthController::class, 'login'])->name('auth.login');
 Route::post('/auth/login', [Controllers\AuthController::class, 'postLogin']);
 Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])->name('auth.logout');
 
 Route::middleware('auth:web')->group(function () {
+    Route::get('/', [Controllers\HomeController::class, 'dashboard']);
     Route::get('/dashboard', [Controllers\HomeController::class, 'dashboard']);
     Route::get('/news', [Controllers\NewsController::class, 'index'])->name('news.index');
-    Route::get('/news1', [Controllers\NewsController::class, 'index'])->name('news1.index');
+    Route::get('/news1', [Controllers\NewsController::class, 'index1'])->name('news1.index');
     Route::get('/news2', [Controllers\NewsController::class, 'index2'])->name('news2.index');
     Route::get('/news3', [Controllers\NewsController::class, 'index3'])->name('news3.index');
     Route::get('/news4', [Controllers\NewsController::class, 'index4'])->name('news4.index');
@@ -36,6 +36,15 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/downloads/zip', [Controllers\DownloadController::class, 'downloadZip'])->name('download.zip');
     Route::get('/downloads/pdf', [Controllers\DownloadController::class, 'downloadPdf'])->name('download.pdf');
 
+    Route::get('/documents', [Controllers\DocumentController::class, 'index'])->name('document.index');
+
+    Route::get('/slider/splide1', [Controllers\SliderController::class, 'splide'])->name('slider.splide');
+    Route::get('/slider/swiper', [Controllers\SliderController::class, 'swiper'])->name('slider.swiper');
+    Route::get('/slider/glide1', [Controllers\SliderController::class, 'glide'])->name('slider.glide');
+
+    Route::get('/paginate/type1', [Controllers\PaginationController::class, 'type1'])->name('paginate.type1');
+    Route::get('/paginate/type2', [Controllers\PaginationController::class, 'type2'])->name('paginate.type2');
+
     Route::get('/users', [Controllers\UserController::class, 'index'])->name('user.index');
     Route::get('/usertokens', [Controllers\UserController::class, 'index'])->name('usertoken.index');
 });
@@ -44,6 +53,3 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload');
     Route::get('/file/list', [Controllers\Api\FileController::class, 'list'])->name('api.file.list');
 });
-
-Route::get('/', [Controllers\HomeController::class, 'index']);
-
