@@ -1,5 +1,5 @@
-export type {UserStoreResponse}
+export type {UserStoreResponseBody}
 
-interface UserStoreResponse {
+interface UserStoreResponseBody {
     id: number;
 }

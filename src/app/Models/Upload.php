@@ -3,17 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class News extends BaseModel
+class Upload extends BaseModel
 {
+    protected $table = 'upload';
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'body',
-        'published_at',
+        'name',
         'path',
-        'news_category_id',
+        'extension',
     ];
 }

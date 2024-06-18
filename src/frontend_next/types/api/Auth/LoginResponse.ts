@@ -1,6 +1,6 @@
-export type {LoginResponse}
+export type {LoginResponseBody}
 
-interface LoginResponse {
+interface LoginResponseBody {
     id: string;
     email: string;
 }

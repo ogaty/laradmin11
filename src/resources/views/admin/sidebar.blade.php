@@ -21,9 +21,15 @@
                             'title' => 'Download',
                             'icon' => "ri-download-line"
                         ];
+                        $uploadMenu = [
+                            'link' => route('upload.index'),
+                            'title' => 'Upload',
+                            'icon' => "ri-upload-line"
+                        ];
                     @endphp
                     @include('/admin/_sidebar_single', ['menu' => $newsMenu])
                     @include('/admin/_sidebar_single', ['menu' => $downloadMenu])
+                    @include('/admin/_sidebar_single', ['menu' => $uploadMenu])
                     @php
                         $newsMenu2 = [
                             'title' => 'News(vaildation)',

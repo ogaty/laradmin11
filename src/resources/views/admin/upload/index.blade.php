@@ -4,10 +4,10 @@
 @endsection
 
 @section('content')
-    <h1>News</h1>
+    <h1>Upload</h1>
 
     <div>
-        @if ($news->count() == 0)
+        @if ($uploads->count() == 0)
             nodata
         @else
             <table>
@@ -16,16 +16,16 @@
                         #
                     </th>
                     <th>
-                        タイトル
+                        名前
                     </th>
                 </tr>
-                @foreach ($news as $n)
+                @foreach ($uploads as $upload)
                     <tr>
                         <td>
-                            {{ $n->id }}
+                            {{ $upload->id }}
                         </td>
                         <td>
-                            {{ $n->title }}
+                            {{ $upload->name }}
                         </td>
                     </tr>
                 @endforeach

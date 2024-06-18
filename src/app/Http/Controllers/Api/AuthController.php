@@ -18,8 +18,8 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            return response()->json([], 400);
+        if (!Auth::attempt(['email' => $email, 'password' => $password])) {
+            return response()->json(['username or password is incorrect.'], 400);
         }
 
         $user = User::where('email', $email)->first();

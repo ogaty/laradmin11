@@ -36,6 +36,8 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/downloads/zip', [Controllers\DownloadController::class, 'downloadZip'])->name('download.zip');
     Route::get('/downloads/pdf', [Controllers\DownloadController::class, 'downloadPdf'])->name('download.pdf');
 
+    Route::get('/uploads', [Controllers\UploadController::class, 'index'])->name('upload.index');
+
     Route::get('/documents', [Controllers\DocumentController::class, 'index'])->name('document.index');
 
     Route::get('/slider/splide1', [Controllers\SliderController::class, 'splide'])->name('slider.splide');

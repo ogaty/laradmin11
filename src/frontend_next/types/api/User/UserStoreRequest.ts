@@ -1,6 +1,6 @@
-export type {UserStoreRequest}
+export type {UserStoreRequestBody}
 
-interface UserStoreRequest {
+interface UserStoreRequestBody {
     name: string;
     email: string;
     password: string;

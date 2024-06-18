@@ -1,6 +1,6 @@
-export type {UserUpdateResponse}
+export type {UserUpdateResponseBody}
 
-interface UserUpdateResponse {
+interface UserUpdateResponseBody {
     id: number;
     name: string;
     email: string;
