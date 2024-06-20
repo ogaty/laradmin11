@@ -198,6 +198,17 @@ class NewsController extends Controller
     }
 
     /**
+     * 表示
+     */
+    public function show(int $id)
+    {
+        $news = News::findOrFail($id);
+        return view($this->blade . "/show", [
+            'news' => $news,
+        ]);
+    }
+
+    /**
      * 保存共通
      * @param Request $request
      * @return void

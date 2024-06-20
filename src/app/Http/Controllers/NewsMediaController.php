@@ -50,4 +50,15 @@ class NewsMediaController extends Controller
 
         return redirect("/news-media/medias/" . $newsMedia->id);
     }
+
+    /**
+     * 表示
+     */
+    public function show(int $id)
+    {
+        $news = NewsMedia::findOrFail($id);
+        return view($this->blade . "/show", [
+            'news' => $news,
+        ]);
+    }
 }

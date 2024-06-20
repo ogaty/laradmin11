@@ -4,6 +4,7 @@ import {useRef} from "react"
 import Api from "@/libs/ApiClass"
 import {LoginRequest, LoginRequestBody} from "@/types/api/Auth/LoginRequest";
 import {LoginResponseBody} from "@/types/api/Auth/LoginResponse";
+import {MeRequest} from "@/types/api/Auth/MeRequest";
 
 export default function Page() {
     console.log(process.env.NEXT_PUBLIC_API_URL)
@@ -15,10 +16,15 @@ export default function Page() {
             email: emailRef.current?.value!,
             password: passwordRef.current?.value!,
         }
-        const res = await api.sendPostRequest(new LoginRequest(), body);
+        const res = await api.sendPostRequest(new LoginRequest(), body)
         console.log(res.status)
-        const responseBody = res.data as LoginResponseBody
-        console.log(responseBody.id)
+        console.log(res.data as LoginResponseBody)
+    }
+
+    const handleMe = async () => {
+        const api: Api = new Api()
+        const res = await api.sendGetRequest(new MeRequest(), {});
+        console.log(res.status)
     }
 
     return (
@@ -42,6 +48,7 @@ export default function Page() {
                       <button type="button" className="submit" onClick={handleLogin}>Login</button>
                   </form>
               </div>
+              <button onClick={handleMe}>button</button>
           </div>
       </main>
     );

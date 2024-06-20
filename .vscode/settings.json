@@ -1,0 +1,16 @@
+{
+    "favorites.resources": [
+        {
+            "filePath": "src/routes",
+            "group": "Default"
+        },
+        {
+            "filePath": "src/resources",
+            "group": "Default"
+        },
+        {
+            "filePath": "src/tests",
+            "group": "Default"
+        }
+    ]
+}

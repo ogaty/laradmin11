@@ -6,5 +6,5 @@ interface LoginRequestBody {
 }
 
 export class LoginRequest implements ApiRequest {
-    url: string = "https://local.ogatism.com/api/auth/login"
+    url: string = process.env.NEXT_PUBLIC_API_URL + "/api/auth/login"
 }

@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers as Controllers;
+use App\Http\Controllers\Api as ApiControllers;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/auth/login', [Controllers\AuthController::class, 'login'])->name('auth.login');
 Route::post('/auth/login', [Controllers\AuthController::class, 'postLogin']);
 Route::get('/auth/logout', [Controllers\AuthController::class, 'logout'])->name('auth.logout');
+
 
 Route::middleware('auth:web')->group(function () {
     Route::get('/', [Controllers\HomeController::class, 'dashboard']);

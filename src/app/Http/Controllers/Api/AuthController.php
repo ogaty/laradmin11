@@ -18,7 +18,7 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-        if (!Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (!Auth::guard('web')->attempt(['email' => $email, 'password' => $password])) {
             return response()->json(['username or password is incorrect.'], 400);
         }
 
@@ -31,7 +31,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
 
         return response()->json([], 200);
     }
@@ -53,5 +53,10 @@ class AuthController extends Controller
         }
 
         return response()->json(['auth failed.']);
+    }
+
+    public function me()
+    {
+        return response()->json(Auth::guard('web')->user());
     }
 }

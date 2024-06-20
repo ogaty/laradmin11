@@ -1,5 +1,7 @@
 <?php
 
+// webサーバーに対するcors関連の設定
+
 return [
 
     /*
@@ -15,11 +17,13 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:23001')],
+    // Access-Control-Allow-Originを出す対象ホスト
+    'allowed_origins' => [env('FRONTEND_URL')],
 
     'allowed_origins_patterns' => [],
 

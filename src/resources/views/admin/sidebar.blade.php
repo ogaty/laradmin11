@@ -27,9 +27,6 @@
                             'icon' => "ri-upload-line"
                         ];
                     @endphp
-                    @include('/admin/_sidebar_single', ['menu' => $newsMenu])
-                    @include('/admin/_sidebar_single', ['menu' => $downloadMenu])
-                    @include('/admin/_sidebar_single', ['menu' => $uploadMenu])
                     @php
                         $newsMenu2 = [
                             'title' => 'News(vaildation)',
@@ -108,6 +105,9 @@
                             ]
                         ];
                     @endphp
+                    @include('/admin/_sidebar_single', ['menu' => $newsMenu])
+                    @include('/admin/_sidebar_single', ['menu' => $downloadMenu])
+                    @include('/admin/_sidebar_single', ['menu' => $uploadMenu])
                     @include('/admin/_sidebar_multi', ['menu' => $newsMenu2])
                     @include('/admin/_sidebar_multi', ['menu' => $newsMenu3])
                     @include('/admin/_sidebar_multi', ['menu' => $sliderMenu])

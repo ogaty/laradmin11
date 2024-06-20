@@ -5,9 +5,23 @@
 
 @section('content')
 
-    <div>
-        <span>< old</span>
-        <span>new ></span>
-    </div>
+    <main>
+        <div>
+            {{ $news->title }}
+        </div>
+
+        <div>
+            {{ $news->body }}
+        </div>
+
+        <div>
+            <a href="{{ $old }}">
+                <span>< old</span>
+            </a>
+            <a href="{{ $new }}">
+                <span>new ></span>
+            </a>
+        </div>
+    </main>
 
 @endsection

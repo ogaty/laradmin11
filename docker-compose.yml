@@ -40,33 +40,6 @@ services:
       - "443:443"
     links:
       - app
-  apache-minio:
-    build: docker/apache/.
-    volumes:
-      - ./src:/var/www/html
-      - type: bind
-        source: ./docker/apache/httpd.conf
-        target: /usr/local/apache2/conf/httpd.conf
-      - type: bind
-        source: ./docker/apache/httpd-vhosts-minio.conf
-        target: /usr/local/apache2/conf/extra/httpd-vhosts.conf
-      - type: bind
-        source: ./docker/apache/httpd-ssl-minio.conf
-        target: /usr/local/apache2/conf/extra/httpd-ssl.conf
-      - type: bind
-        source: ./docker/apache/server.crt
-        target: /usr/local/apache2/conf/server.crt
-      - type: bind
-        source: ./docker/apache/server.csr
-        target: /usr/local/apache2/conf/server.csr
-      - type: bind
-        source: ./docker/apache/server.key
-        target: /usr/local/apache2/conf/server.key
-    ports:
-      - "20000:80"
-      - "20001:443"
-    links:
-      - minio
   app:
     build: docker/php-fpm/.
     volumes:
