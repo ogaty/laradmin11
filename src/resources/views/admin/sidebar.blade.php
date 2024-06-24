@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="pro-sidebar-logo">
                 <div>L</div>
-                <h5>Life Cockpit</h5>
+                <h5>Laradmin</h5>
             </div>
         </div>
         <div class="sidebar-content">
@@ -16,16 +16,17 @@
                             'title' => 'News',
                             'icon' => "ri-vip-diamond-fill"
                         ];
-                    @endphp
-                    @include('/admin/_sidebar_single', ['menu' => $newsMenu])
-                    @php
                         $downloadMenu = [
                             'link' => route('download.index'),
                             'title' => 'Download',
                             'icon' => "ri-download-line"
                         ];
+                        $uploadMenu = [
+                            'link' => route('upload.index'),
+                            'title' => 'Upload',
+                            'icon' => "ri-upload-line"
+                        ];
                     @endphp
-                    @include('/admin/_sidebar_single', ['menu' => $downloadMenu])
                     @php
                         $newsMenu2 = [
                             'title' => 'News(vaildation)',
@@ -71,80 +72,67 @@
                                 ],
                             ]
                         ];
+                        $sliderMenu = [
+                            'title' => 'Slider',
+                            'icon' => "ri-carousel-view",
+                            'sub' => [
+                                [
+                                    'link' => route('slider.glide'),
+                                    'title' => 'glide',
+                                ],
+                                [
+                                    'link' => route('slider.splide'),
+                                    'title' => 'splide',
+                                ],
+                                [
+                                    'link' => route('slider.swiper'),
+                                    'title' => 'swiper',
+                                ],
+                            ]
+                        ];
+                        $paginationMenu = [
+                            'title' => 'Paginate',
+                            'icon' => "ri-arrow-right-double-line",
+                            'sub' => [
+                                [
+                                    'link' => route('paginate.type1'),
+                                    'title' => 'type1',
+                                ],
+                                [
+                                    'link' => route('paginate.type2'),
+                                    'title' => 'type2',
+                                ],
+                            ]
+                        ];
                     @endphp
+                    @include('/admin/_sidebar_single', ['menu' => $newsMenu])
+                    @include('/admin/_sidebar_single', ['menu' => $downloadMenu])
+                    @include('/admin/_sidebar_single', ['menu' => $uploadMenu])
                     @include('/admin/_sidebar_multi', ['menu' => $newsMenu2])
                     @include('/admin/_sidebar_multi', ['menu' => $newsMenu3])
-                    <li class="menu-item sub-menu">
-                        <a href="#">
-                        <span class="menu-icon">
-                          <i class="ri-global-fill"></i>
-                        </span>
-                            <span class="menu-title">Menu</span>
-                        </a>
-                        <div class="sub-menu-list">
-                            <ul>
-                                <li class="menu-item">
-                                    <a href="#">
-                                        <span class="menu-title">Google maps</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">
-                                        <span class="menu-title">Open street map</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="menu-item sub-menu">
-                        <a href="#">
-                    <span class="menu-icon">
-                     <i class="ri-paint-brush-fill"></i>
-                    </span>
-                            <span class="menu-title">Revenues</span>
-                        </a>
-                        <div class="sub-menu-list">
-                            <ul>
-                                <li class="menu-item">
-                                    <a href="#">
-                                        <span class="menu-title">Dark</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="#">
-                                        <span class="menu-title">Light</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                    @include('/admin/_sidebar_multi', ['menu' => $sliderMenu])
+                    @include('/admin/_sidebar_multi', ['menu' => $paginationMenu])
+
                     <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
-                    <li class="menu-item">
-                        <a href="#">
-                    <span class="menu-icon">
-                      <i class="ri-book-2-fill"></i>
-                    </span>
-                            <span class="menu-title">Documentation</span>
-                            <span class="menu-suffix">
-                      <span class="badge secondary">Beta</span>
-                    </span>
-                        </a>
-                    </li>
                     @php
+                        $documentMenu = [
+                            'link' => route('document.index'),
+                            'title' => 'Documentation',
+                            'icon' => "ri-book-2-fill"
+                        ];
                         $userMenu = [
                             'link' => route('user.index'),
                             'title' => 'User',
                             'icon' => "ri-user-line"
                         ];
-                    @endphp
-                    @include('/admin/_sidebar_single', ['menu' => $userMenu])
-                    @php
                         $userTokenMenu = [
                             'link' => route('usertoken.index'),
                             'title' => 'TokenUser',
                             'icon' => "ri-user-line"
                         ];
                     @endphp
+                    @include('/admin/_sidebar_single', ['menu' => $documentMenu])
+                    @include('/admin/_sidebar_single', ['menu' => $userMenu])
                     @include('/admin/_sidebar_single', ['menu' => $userTokenMenu])
                     <li class="menu-item">
                         <a href="{{ route('auth.logout') }}">

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('news_category_id');
             $table->string('title')->nullable(false)->default("no title");
             $table->longText('body')->nullable(false);
+            $table->tinyInteger('status')->nullable(false)->default(0);
             $table->dateTime('published_at')->nullable(false)->default(now());
             $table->string('path')->nullable();
             $table->datetimes();

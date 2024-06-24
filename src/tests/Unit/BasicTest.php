@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use Arr;
 
 /**
  * php標準関数の挙動確認
@@ -38,6 +39,25 @@ class BasicTest extends TestCase
 
         $result = empty("a");
         $this->assertFalse($result);
+    }
+
+    /**
+     * @see https://www.php.net/manual/ja/function.isset.php
+     * @see https://www.php.net/manual/ja/function.array-key-exists
+     */
+    public function test_arrayKey(): void
+    {
+        $a = [];
+        $this->assertFalse(isset($a['x']));
+        $this->assertFalse(array_key_exists('x', $a));
+        $this->assertNull(Arr::get('x', $a));
+
+        $a = ['x' => null];
+        // falseになる
+        $this->assertFalse(isset($a['x']));
+        // trueになる
+        $this->assertTrue(array_key_exists('x', $a));
+        $this->assertNull(Arr::get('x', $a));
     }
 
     /**

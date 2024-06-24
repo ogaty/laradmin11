@@ -2,8 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers as Controllers;
+use App\Http\Controllers\Api as ApiControllers;
+
+Route::post('/auth/login', [ApiControllers\AuthController::class, 'postLogin'])->name('api.postLogin');
 
 Route::middleware('auth:web')->group(function () {
-    Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload');
+    Route::post('/users/me', [ApiControllers\AuthController::class, 'me'])->name('api.me');
+    Route::post('/file/upload', [ApiControllers\FileController::class, 'upload'])->name('api.file.upload');
 });

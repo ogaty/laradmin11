@@ -1,5 +1,11 @@
 @extends('admin/layouts')
 
+@php
+if (!isset($check)) {
+    $check = "";
+}
+@endphp
+
 @section('before_styles')
 @endsection
 
@@ -15,7 +21,7 @@
     @endif
     <form action="{{ $url }}/add" method="post" enctype="multipart/form-data">
         @csrf
-        @include('/admin/news/_form')
+        @include('/admin/news/_form', ['check' => $check])
         <div>
             <input type="submit" value="submit1" name="submit1">
         </div>

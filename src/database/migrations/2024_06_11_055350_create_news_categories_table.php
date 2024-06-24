@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('news_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('parent_id');
             $table->string('name');
             $table->datetimes();
         });

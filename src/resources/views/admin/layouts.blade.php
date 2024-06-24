@@ -38,11 +38,11 @@
             @yield('content')
             <footer class="footer">
                 <small style="margin-bottom: 20px; display: inline-block">
-                    © 2023-2024
+                    © 2023-{{ date('Y') }}
                 </small>
                 <br />
                 <div class="social-links">
-                    <a href="https://github.com/ogaty" target="_blank">
+                    <a href="https://github.com/ogaty/laradmin11" target="_blank">
                         <i class="ri-github-fill ri-xl"></i>
                     </a>
                 </div>
