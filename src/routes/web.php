@@ -53,7 +53,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/usertokens', [Controllers\UserController::class, 'index'])->name('usertoken.index');
 });
 
-Route::middleware('auth:web')->group(function () {
-    Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload2');
-    Route::get('/file/list', [Controllers\Api\FileController::class, 'list'])->name('api.file.list');
-});
+//Route::middleware('auth:web')->group(function () {
+//    Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload2');
+//    Route::get('/file/list', [Controllers\Api\FileController::class, 'list'])->name('api.file.list');
+//});
