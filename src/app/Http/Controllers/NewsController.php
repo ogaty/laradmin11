@@ -24,6 +24,21 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $news = News::create([
+            'news_category_id' => 1,
+            'title' => '',
+            'body' => '',
+            'path' => null,
+            'published_at' => '2024-01-01'
+        ]);
+
+        dd($news->toJson());
+
+        $news->path = null;
+        $news->save();
+
+
+        dd($news->toJson());
         $message = Session::get("message");
         $news = News::all();
         return view($this->blade . '/index', [
@@ -42,7 +57,8 @@ class NewsController extends Controller
         return view($this->blade . '/news', [
             "title" => "news validate pattern1", "url" => "/news1",
             "open" => "news",
-            "message" => $message
+            "message" => $message,
+            "check" => "空NG(middleware)"
         ]);
     }
 
@@ -54,7 +70,8 @@ class NewsController extends Controller
         return view($this->blade . '/news', [
             "title" => "news validate pattern2", "url" => "/news2",
             "open" => "news",
-            "message" => $message
+            "message" => $message,
+            "check" => "空OK"
         ]);
     }
 
@@ -66,7 +83,8 @@ class NewsController extends Controller
         return view($this->blade . '/news', [
             "title" => "news validate pattern3", "url" => "/news3",
             "open" => "news",
-            "message" => $message
+            "message" => $message,
+            "check" => "空OK"
         ]);
     }
 

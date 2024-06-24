@@ -20,7 +20,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/news5', [Controllers\NewsController::class, 'index5'])->name('news5.index');
     Route::get('/news6', [Controllers\NewsController::class, 'index6'])->name('news6.index');
     Route::post('/news/add', [Controllers\NewsController::class, 'store1']);
-    Route::post('/news1/add', [Controllers\NewsController::class, 'store1']);
+    Route::post('/news1/add', [Controllers\NewsController::class, 'store1'])->middleware(\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class);
     Route::post('/news2/add', [Controllers\NewsController::class, 'store2']);
     Route::post('/news3/add', [Controllers\NewsController::class, 'store3']);
     Route::post('/news4/add', [Controllers\NewsController::class, 'store4']);
@@ -54,6 +54,6 @@ Route::middleware('auth:web')->group(function () {
 });
 
 Route::middleware('auth:web')->group(function () {
-    Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload');
+    Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload2');
     Route::get('/file/list', [Controllers\Api\FileController::class, 'list'])->name('api.file.list');
 });
