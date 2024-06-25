@@ -37,3 +37,7 @@
 .ck_editor {
     min-height: 400px;
 }
+.inline-link {
+    display: inline-block;
+    margin-right: 5px;
+}
