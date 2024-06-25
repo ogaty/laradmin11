@@ -1,6 +1,7 @@
 export type {MeResponseBody}
 
 interface MeResponseBody {
-    id: string;
+    id: number;
     email: string;
+    name: string;
 }
