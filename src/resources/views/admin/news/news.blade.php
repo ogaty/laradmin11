@@ -19,14 +19,16 @@ if (!isset($check)) {
             @endforeach
         </ul>
     @endif
-    <form action="{{ $url }}/add" method="post" enctype="multipart/form-data">
+    <form action="{{ $url }}/store" method="post" enctype="multipart/form-data">
         @csrf
-        @include('/admin/news/_form', ['check' => $check])
-        <div>
-            <input type="submit" value="submit1" name="submit1">
-        </div>
-        <div>
-            <input type="submit" value="submit2" name="submit2">
+        @include('/admin/news/_form', ['check' => $check, 'categories' => $categories, 'news' => $news])
+        <div class="form-buttons">
+            <div>
+                <input type="submit" value="下書き" name="submit1" class="submit_button">
+            </div>
+            <div>
+                <input type="submit" value="公開" name="submit2" class="submit_button">
+            </div>
         </div>
     </form>
 

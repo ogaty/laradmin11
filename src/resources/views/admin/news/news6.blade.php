@@ -23,7 +23,9 @@
             </div>
             <div>
                 <select name="news_category_id" class="form-select">
-                    <option value="1">AAA</option>
+                    @foreach ($categories as $key => $category)
+                        <option value="{{ $key }}" {{ old('news_category_id') == $key ? 'selected' : ($key == $news->news_category_id ? 'selected' : '') }}>{{ $category }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -33,7 +35,7 @@
                 <label for="title" class="mainlabel">title</label>
             </div>
             <div>
-                <input type="text" name="title" id="title" class="longtext" value="new news">
+                <input type="text" name="title" id="title" class="longtext" value="{{ old('title') ?? ($news ? $news->title : '') }}">
             </div>
         </div>
 
@@ -41,15 +43,15 @@
             <div>
                 <label for="title" class="mainlabel">body</label>
             </div>
-            <textarea class="editor"></textarea>
+            <textarea class="editor">{{ old('body') ?? ($news ? $news->body : '') }}</textarea>
         </div>
 
         <div class="form-buttons">
             <div>
-                <input type="submit" value="submit1" name="submit1" class="submit_button">
+                <input type="submit" value="下書き" name="submit1" class="submit_button">
             </div>
             <div>
-                <input type="submit" value="submit2" name="submit2" class="submit_button">
+                <input type="submit" value="公開" name="submit2" class="submit_button">
             </div>
         </div>
     </form>

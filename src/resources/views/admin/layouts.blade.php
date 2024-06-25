@@ -15,6 +15,7 @@
     @stack('before_styles')
 
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/table.css">
     <link rel="stylesheet" href="/sidebar/sidebar.css">
     <link rel="stylesheet" href="/remixicon/remixicon.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap">

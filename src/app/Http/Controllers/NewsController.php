@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use App\Models\NewsCategory;
 use App\Util\Message;
 use Closure;
 use Illuminate\Http\Request;
@@ -32,13 +33,10 @@ class NewsController extends Controller
             'published_at' => '2024-01-01'
         ]);
 
-        dd($news->toJson());
-
         $news->path = null;
         $news->save();
 
 
-        dd($news->toJson());
         $message = Session::get("message");
         $news = News::all();
         return view($this->blade . '/index', [
@@ -54,11 +52,14 @@ class NewsController extends Controller
     public function index1()
     {
         $message = Session::get("message");
+        $categories = NewsCategory::all()->pluck('name', 'id')->toArray();
         return view($this->blade . '/news', [
             "title" => "news validate pattern1", "url" => "/news1",
             "open" => "news",
             "message" => $message,
-            "check" => "空NG(middleware)"
+            "check" => "空NG",
+            "categories" => $categories,
+            "news" => new News(),
         ]);
     }
 
@@ -67,11 +68,14 @@ class NewsController extends Controller
     public function index2()
     {
         $message = Session::get("message");
+        $categories = NewsCategory::all()->pluck('name', 'id')->toArray();
         return view($this->blade . '/news', [
             "title" => "news validate pattern2", "url" => "/news2",
             "open" => "news",
             "message" => $message,
-            "check" => "空OK"
+            "check" => "空NG",
+            "categories" => $categories,
+            "news" => new News(),
         ]);
     }
 
@@ -80,11 +84,14 @@ class NewsController extends Controller
     public function index3()
     {
         $message = Session::get("message");
+        $categories = NewsCategory::all()->pluck('name', 'id')->toArray();
         return view($this->blade . '/news', [
             "title" => "news validate pattern3", "url" => "/news3",
             "open" => "news",
             "message" => $message,
-            "check" => "空OK"
+            "check" => "空OK",
+            "categories" => $categories,
+            "news" => new News(),
         ]);
     }
 
@@ -94,7 +101,8 @@ class NewsController extends Controller
     {
         $message = Session::get("message");
         return view($this->blade . '/news4', [
-            "title" => "news(Quill)", "url" => "/news4",
+            "title" => "news(Quill)",
+            "url" => "/news4",
             "open" => "news",
             "message" => $message
         ]);
@@ -137,12 +145,17 @@ class NewsController extends Controller
                 if ($value == "NG") {
                     $fail("ng word.");
                 }
-            }
+            },
+            'body' => 'filled'
+        ], [
+            'title' => 'タイトルは必須です。'
         ]);
-//
-//        if ($request->has('submit1')) {
-//
-//        }
+
+        if ($request->has('下書き')) {
+            $request->merge(['status' => 0]);
+        } else {
+            $request->merge(['status' => 1]);
+        }
 
         $this->storeCommon($request);
         return redirect("/news")->with($this->success);
@@ -155,7 +168,11 @@ class NewsController extends Controller
     public function store2(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'body' => 'filled',
             'published_at' => ['date_format:Y-m-d'],
+        ], [
+            'body' => 'filled',
+            'published_at' => '日付が不正です。'
         ]);
 
         if ($validator->fails()) {
@@ -163,6 +180,12 @@ class NewsController extends Controller
                 ->back()
                 ->withErrors($validator)
                 ->withInput();
+        }
+
+        if ($request->has('下書き')) {
+            $request->merge(['status' => 0]);
+        } else {
+            $request->merge(['status' => 1]);
         }
 
         $this->storeCommon($request);
@@ -175,6 +198,12 @@ class NewsController extends Controller
      */
     public function store3(NewsRequest $request)
     {
+        if ($request->has('下書き')) {
+            $request->merge(['status' => 0]);
+        } else {
+            $request->merge(['status' => 1]);
+        }
+
         $this->storeCommon($request);
         return redirect("/news3")->with($this->success);
     }
@@ -225,6 +254,55 @@ class NewsController extends Controller
             'news' => $news,
         ]);
     }
+
+    /**
+     */
+    public function edit4(News $news)
+    {
+        $message = Session::get("message");
+        $categories = NewsCategory::all()->pluck('name', 'id')->toArray();
+        return view($this->blade . '/news4', [
+            "title" => "news(Quill)",
+            "url" => "/news4",
+            "open" => "new4",
+            "message" => $message,
+            "news" => $news,
+            "categories" => $categories,
+        ]);
+    }
+
+    /**
+     */
+    public function edit5(News $news)
+    {
+        $message = Session::get("message");
+        $categories = NewsCategory::all()->pluck('name', 'id')->toArray();
+        return view($this->blade . '/news5', [
+            "title" => "news(CKEditor)",
+            "url" => "/news5",
+            "open" => "new5",
+            "message" => $message,
+            "news" => $news,
+            "categories" => $categories,
+        ]);
+    }
+
+    /**
+     */
+    public function edit6(News $news)
+    {
+        $message = Session::get("message");
+        $categories = NewsCategory::all()->pluck('name', 'id')->toArray();
+        return view($this->blade . '/news6', [
+            "title" => "news(TinyMCE)",
+            "url" => "/news6",
+            "open" => "news",
+            "message" => $message,
+            "news" => $news,
+            "categories" => $categories,
+        ]);
+    }
+
 
     /**
      * 保存共通
