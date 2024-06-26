@@ -8,17 +8,17 @@ class Api {
             key => url.searchParams.append(key, params[key])
         )
 
-        return await fetch(url.toString())
+        return await $fetch(url.toString())
     }
 
     sendPostRequest = async (request: ApiRequest, body: Object) => {
         const runtimeConfig = useRuntimeConfig();
 
         // csrf-cookie
-        await fetch(runtimeConfig.public.apiUrl + "/sanctum/csrf-cookie")
+        await $fetch(runtimeConfig.public.apiUrl + "/sanctum/csrf-cookie")
 
         // Login
-        return await fetch(runtimeConfig.public.apiUrl + request.url,
+        return await $fetch(runtimeConfig.public.apiUrl + request.url,
             {
                 method: "POST",
                 headers: {

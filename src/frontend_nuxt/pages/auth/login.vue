@@ -18,18 +18,20 @@
             password: passwordModel.value as string,
         }
         const res = await api.sendPostRequest(new LoginRequest(), body)
-        if (res.ok) {
-            const responseBody = await res.json() as LoginResponseBody
-            const u = {
-                id: responseBody.id,
-                name: responseBody.name,
-                email: responseBody.email
-            } as User
-            const store = useUserStore()
-            store.set(u)
+            .then((body) => {
+                const responseBody = body as LoginResponseBody
+                const u = {
+                    id: responseBody.id,
+                    name: responseBody.name,
+                    email: responseBody.email
+                } as User
+                const store = useUserStore()
+                store.set(u)
 
-            navigateTo("/")
-        }
+                navigateTo("/")
+            }).catch((body) => {
+
+            })
     }
 </script>
 

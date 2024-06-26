@@ -1,4 +1,113 @@
 <script setup lang="ts">
+    import SidebarSingle from "~/components/sections/sidebarSingle.vue";
+    import type {Menu} from "~/types/model/Menu";
+
+    const newsMenu = {
+        link: "/news/",
+        title: "News",
+        icon: "ri-vip-diamond-fill"
+    } as Menu
+    const downloadMenu = {
+        link: "/download/",
+        title: "Download",
+        icon: "ri-download-line"
+    }
+    const uploadMenu = {
+        link: "/upload/",
+        title: "Upload",
+        icon: "ri-upload-line"
+    }
+    const newsMenu2 = {
+        title: "News(vaildation)",
+        icon: "ri-file-close-line",
+        sub: [
+            {
+                link: "/news1",
+                title: "News(validation1)"
+            },
+            {
+                link: "/news2",
+                title: "News(validation2)"
+            },
+            {
+                link: "/news3",
+                title: "News(validation3)"
+            },
+            {
+                link: "/news-media",
+                title: "News(MediaLibrary)"
+            },
+            {
+                link: "/news-category",
+                title: "NewsCategory"
+            },
+        ]
+    }
+    const newsMenu3 = {
+        title: "News(Editor)",
+        icon: "ri-file-close-line",
+        sub: [
+            {
+                link: "/news4",
+                title: "News(Quill)"
+            },
+            {
+                link: "/news5",
+                title: "News(CKEditor)"
+            },
+            {
+                link: "/news6",
+                title: "News(TinyMCE)"
+            },
+        ]
+    }
+    const sliderMenu = {
+        title: "Slider",
+        icon: "ri-carousel-view",
+        sub: [
+            {
+                link: "/slider/glide",
+                title: "glide"
+            },
+            {
+                link: "/slider/splide",
+                title: "splide"
+            },
+            {
+                link: "/slider/swiper",
+                title: "swiper"
+            },
+        ]
+    }
+    const paginationMenu = {
+        title: "Paginate",
+        icon: "ri-arrow-right-double-line",
+        sub: [
+            {
+                link: "/paginate/type1",
+                title: "type1"
+            },
+            {
+                link: "/paginate/type2",
+                title: "type2"
+            },
+        ]
+    }
+    const documentMenu = {
+        link: "/document/",
+        title: "Documentation",
+        icon: "ri-book-2-fill"
+    }
+    const userMenu = {
+        link: "/user/",
+        title: "User",
+        icon: "ri-user-line"
+    }
+    const userTokenMenu = {
+        link: "/usertoken/",
+        title: "UserToken",
+        icon: "ri-user-line"
+    }
 </script>
 
 <template>
@@ -14,10 +123,9 @@
                 <nav class="menu open-current-submenu">
                     <ul>
                         <li class="menu-header"><span> GENERAL </span></li>
-
-                        <SidebarSingle menu={newsMenu} />
-                        <SidebarSingle menu={downloadMenu} />
-                        <SidebarSingle menu={uploadMenu} />
+                        <SidebarSingle :menu="newsMenu" />
+                        <SidebarSingle :menu="downloadMenu" />
+                        <SidebarSingle :menu="uploadMenu" />
                         <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
                         <li class="menu-item">
                             <a href="/logout">
