@@ -12,12 +12,6 @@ class Api {
         )
 
         return await client.get(url.toString())
-            .then((response) => {
-                return response
-            })
-            .catch((response) => {
-                return response
-            })
     }
 
     sendPostRequest = async (request: ApiRequest, body: Object) => {
@@ -26,12 +20,6 @@ class Api {
 
         // Login
         return await client.post(request.url, body)
-            .then(async (response) => {
-                return response
-            })
-            .catch((response) => {
-                return response
-            })
     }
 
     sendPutRequest = (request: ApiRequest) => {

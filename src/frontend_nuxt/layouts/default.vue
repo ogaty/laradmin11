@@ -5,7 +5,6 @@
 <template>
     <template>
         <div>
-            <div>sss</div>
             <AppHeader />
             <slot />
             <AppFooter />

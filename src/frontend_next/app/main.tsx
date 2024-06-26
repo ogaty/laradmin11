@@ -1,6 +1,6 @@
 'use client'
 
-import Api from "@/libs/ApiClass";
+import Api from "@/libs/apiClass";
 
 import {MeRequest} from "@/types/api/Auth/MeRequest";
 import {MeResponseBody} from "@/types/api/Auth/MeResponse";

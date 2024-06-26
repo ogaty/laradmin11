@@ -23,7 +23,7 @@ return [
     'allowed_methods' => ['*'],
 
     // Access-Control-Allow-Originを出す対象ホスト
-    'allowed_origins' => [env('FRONTEND_URL')],
+    'allowed_origins' => explode(',', env('FRONTEND_URL')),
 
     'allowed_origins_patterns' => [],
 
