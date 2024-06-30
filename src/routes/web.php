@@ -58,6 +58,8 @@ Route::middleware('auth:web')->group(function () {
 
     Route::get('/users', [Controllers\UserController::class, 'index'])->name('user.index');
     Route::get('/usertokens', [Controllers\UserController::class, 'index'])->name('usertoken.index');
+
+    Route::get('/sandbox', [Controllers\SandboxController::class, 'index'])->name('sandbox.index');
 });
 
 Route::middleware('auth:web')->group(function () {

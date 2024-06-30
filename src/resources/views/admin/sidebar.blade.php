@@ -115,6 +115,11 @@
 
                     <li class="menu-header" style="padding-top: 20px"><span> EXTRA </span></li>
                     @php
+                        $sandboxMenu = [
+                            'link' => route('sandbox.index'),
+                            'title' => 'Sandbox',
+                            'icon' => "ri-flag-2-fill"
+                        ];
                         $documentMenu = [
                             'link' => route('document.index'),
                             'title' => 'Documentation',
@@ -131,6 +136,7 @@
                             'icon' => "ri-user-line"
                         ];
                     @endphp
+                    @include('/admin/_sidebar_single', ['menu' => $sandboxMenu])
                     @include('/admin/_sidebar_single', ['menu' => $documentMenu])
                     @include('/admin/_sidebar_single', ['menu' => $userMenu])
                     @include('/admin/_sidebar_single', ['menu' => $userTokenMenu])
