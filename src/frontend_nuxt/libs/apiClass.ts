@@ -25,6 +25,7 @@ class Api {
                     "X-Requested-With": "XMLHttpRequest",
                     "Content-Type": "application/json"
                 },
+                credentials : "include" as RequestCredentials,
                 body: JSON.stringify(body)
             })
     }

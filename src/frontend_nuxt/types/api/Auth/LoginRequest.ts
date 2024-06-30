@@ -7,4 +7,7 @@ interface LoginRequestBody {
 
 export class LoginRequest implements ApiRequest {
     url: string = "/api/auth/login"
+    makeUrl(params: commonObject): string {
+      return this.url
+    }
 }

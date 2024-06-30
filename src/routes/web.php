@@ -39,8 +39,11 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/downloads/csv2', [Controllers\DownloadController::class, 'downloadCsv2'])->name('download.csv2');
     Route::get('/downloads/csv3', [Controllers\DownloadController::class, 'downloadCsv3'])->name('download.csv3');
     Route::get('/downloads/csv4', [Controllers\DownloadController::class, 'downloadCsv4'])->name('download.csv4');
+    Route::get('/downloads/csv5', [Controllers\DownloadController::class, 'downloadCsv5'])->name('download.csv5');
     Route::get('/downloads/zip', [Controllers\DownloadController::class, 'downloadZip'])->name('download.zip');
+    Route::get('/downloads/zip2', [Controllers\DownloadController::class, 'downloadZip2'])->name('download.zip2');
     Route::get('/downloads/pdf', [Controllers\DownloadController::class, 'downloadPdf'])->name('download.pdf');
+    Route::get('/downloads/pdf2', [Controllers\DownloadController::class, 'downloadPdf2'])->name('download.pdf2');
 
     Route::get('/uploads', [Controllers\UploadController::class, 'index'])->name('upload.index');
 
@@ -57,7 +60,8 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/usertokens', [Controllers\UserController::class, 'index'])->name('usertoken.index');
 });
 
-//Route::middleware('auth:web')->group(function () {
+Route::middleware('auth:web')->group(function () {
 //    Route::post('/file/upload', [Controllers\Api\FileController::class, 'upload'])->name('api.file.upload2');
 //    Route::get('/file/list', [Controllers\Api\FileController::class, 'list'])->name('api.file.list');
-//});
+    Route::get('/file/list', [Controllers\Api\FileController::class, 'list'])->name('flist');
+});
